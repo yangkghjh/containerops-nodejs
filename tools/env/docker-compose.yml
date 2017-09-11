@@ -1,0 +1,12 @@
+version: "2"
+services:
+  test-env:
+    image: 'hub.opshub.sh/containerops/nodejs:latest'
+    build: ./
+    container_name: nodejs-env
+    tty: true
+    environment:
+      - "TZ=Asia/Shanghai"
+    volumes:
+      - ../../:/root/src
+    working_dir: /root/src

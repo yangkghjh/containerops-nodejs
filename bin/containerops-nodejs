@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+var component = process.argv[2];
+
+function Git (git_url) {
+    if (!(git_url !== null && git_url !== undefined && git_url !== '')) {
+        Stderr("Git url could not be null.");
+    }
+
+    var spawn = require('child_process').spawn;
+    git = spawn('git', ['clone', git_url]);
+    git.stdout.on('data', function (data) { 
+        Stdout(data);
+    }); 
+    git.stderr.on('data', function (data) { 
+        Stderr("Git clone faild: \n" + data);
+    }); 
+    git.on('exit', function (code, signal) { 
+        if (code == 0) {
+            Stdout(data);
+        } else {
+            Stderr("Git clone error: \n" + data);
+        }
+    });
+}
+
+function Stdout (msg) {
+    process.stdout.write(msg);
+}
+
+function Stderr (msg) {
+    process.stderr.write(msg + "\n");
+    process.exit(1);
+}
+
+function Env () {
+    var envs = new Array();
+    co_data = process.env.CO_DATA;
+    if (typeof co_data == 'string') {  
+        envs = co_data.split(' ')  
+    } else {  
+        envs = [];  
+    }
+
+    var result = {};
+    envs.forEach(function (v, i ,a) {
+        kv = co_data.split('=');
+        result[kv[0]] = kv[1];
+    });
+
+    return result;
+}
+
+if (!(component !== null || component !== undefined || component !== '')) {
+    Stderr("component could not be null");
+}
+
+var co_data = Env();
+
+Git(co_data.git_url);

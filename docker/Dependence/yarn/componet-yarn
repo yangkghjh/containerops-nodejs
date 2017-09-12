@@ -68,7 +68,7 @@ if (!(component !== null || component !== undefined || component !== '')) {
 var co_data = Env();
 
 Git(co_data.git_url, () => {
-    Cmd("bower install --allow-root", workdir, () => {
+    Cmd("yarn install", workdir, () => {
         Stderr("[COUT] CO_RESULT = true\n");
     });
 });

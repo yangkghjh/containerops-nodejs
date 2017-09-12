@@ -1,2 +1,3 @@
-export CO_DATA="git_url=https://github.com/Cathy0807/react.git"
-./bin/containerops-nodejs test
+export CO_DATA="git_url=https://github.com/WildDogTeam/demo-js-wildchat.git"
+./bin/containerops-nodejs
+rm -rf workdir/

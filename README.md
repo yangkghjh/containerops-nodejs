@@ -9,12 +9,19 @@ Node.js componets for [containerops](https://github.com/Huawei/containerops).
 
 | Type | Componets | Introduction |
 | :--- | :--- | :--- |
+| Dependence | Bower  |  |
+| Dependence | NPM |  |
+| Dependence | Yarn |  |
 | Build | Webpack |  |
 | Build| Grunt |  |
 | Build | Gulp |  |
 | Build | Browserify |  |
 | Build | Brunch |  |
 | Build | Babel |  |
+| Build | Less |  |
+| Build | SASS |  |
+| Build | Coffee |  |
+| Build | Uglify2 |  |
 | Document | JSDoc |  |
 | Document | Docco |  |
 | Test | Jasmine |  |
@@ -26,10 +33,5 @@ Node.js componets for [containerops](https://github.com/Huawei/containerops).
 | Analysis | ESLint |  |
 | Analysis | JScs |  |
 | Analysis | Flow |  |
-| Build | Less |  |
-| Build | SASS |  |
-| Build | Coffee |  |
-| Build | Uglify2 |  |
-| Dependence | Bower  |  |
-| Dependence | NPM |  |
-| Dependence | Yarn |  |
+
+

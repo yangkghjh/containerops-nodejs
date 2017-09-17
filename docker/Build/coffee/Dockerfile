@@ -15,11 +15,11 @@
 FROM hub.opshub.sh/containerops/nodejs:latest
 MAINTAINER Yang Bin <yangkghjh@gmail.com>
 
-RUN npm install -g webpack
+RUN npm install --global coffeescript
 
 RUN mkdir -p /root/src
 ADD / /root/src
 
 WORKDIR /root/src
 
-CMD ./componet-webpack
+CMD ./componet-coffee

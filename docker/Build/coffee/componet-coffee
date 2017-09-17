@@ -63,6 +63,14 @@ async function Cmd (cmd, cwd, f) {
 function getCmd(params, paramsList, baseCmd) {
     var cmd = baseCmd;
 
+    if (!isNull(params['files'])) {
+        cmd = cmd + " " + params['files'];
+    }
+
+    if (!isNull(params['output'])) {
+        cmd = cmd + " | coffee --compile --stdio > " + params['output'];
+    }
+
     console.log(cmd);
     return cmd;
 }
@@ -76,18 +84,14 @@ if (!(component !== null || component !== undefined || component !== '')) {
 }
 
 var paramsList = [
-    "require",
-    "reporter",
-    "check-leaks"
+    "d"
 ];
 
 var co_data = Env();
-var cmd = getCmd(co_data, paramsList, "flow");
+var cmd = getCmd(co_data, paramsList, "cat");
 
 Git(co_data.git_url, () => {
-    Cmd("npm install", workdir, () => {
-        Cmd(cmd, workdir, () => {
-            Stderr("[COUT] CO_RESULT = true\n");
-        });
+    Cmd(cmd, workdir, () => {
+        Stderr("[COUT] CO_RESULT = true\n");
     });
 });

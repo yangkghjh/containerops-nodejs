@@ -15,11 +15,12 @@
 FROM hub.opshub.sh/containerops/nodejs:latest
 MAINTAINER Yang Bin <yangkghjh@gmail.com>
 
-RUN npm install -g webpack
+RUN apt-get install -y bzip2
+RUN npm install -g jshint
 
 RUN mkdir -p /root/src
 ADD / /root/src
 
 WORKDIR /root/src
 
-CMD ./componet-webpack
+CMD ./componet-jshint

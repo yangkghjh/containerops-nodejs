@@ -63,6 +63,10 @@ async function Cmd (cmd, cwd, f) {
 function getCmd(params, paramsList, baseCmd) {
     var cmd = baseCmd;
 
+    if (!isNull(params['path'])) {
+        cmd = cmd + " " + params['path'];
+    }
+
     console.log(cmd);
     return cmd;
 }
@@ -82,7 +86,7 @@ var paramsList = [
 ];
 
 var co_data = Env();
-var cmd = getCmd(co_data, paramsList, "flow");
+var cmd = getCmd(co_data, paramsList, "eslint");
 
 Git(co_data.git_url, () => {
     Cmd("npm install", workdir, () => {

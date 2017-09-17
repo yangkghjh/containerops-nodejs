@@ -62,6 +62,11 @@ async function Cmd (cmd, cwd, f) {
 
 function getCmd(params, paramsList, baseCmd) {
     var cmd = baseCmd;
+    paramsList.forEach((p) => {
+        if (!isNull(params[p])) {
+            cmd = cmd + " --" + p + " " + params[p];
+        }
+    })
 
     console.log(cmd);
     return cmd;
@@ -76,13 +81,11 @@ if (!(component !== null || component !== undefined || component !== '')) {
 }
 
 var paramsList = [
-    "require",
-    "reporter",
-    "check-leaks"
+    "config"
 ];
 
 var co_data = Env();
-var cmd = getCmd(co_data, paramsList, "flow");
+var cmd = getCmd(co_data, paramsList, "webpack");
 
 Git(co_data.git_url, () => {
     Cmd("npm install", workdir, () => {

@@ -17,7 +17,7 @@ paths=( \
     "cd docker/Analysis/eslint" \
 )
 
-for i in {0..11}; do
+for i in {0..0}; do
     ${paths[$i]}
     echo "Build $PREFIX${list[$i]}:$VERSION"
     docker build -t $PREFIX${list[$i]}:$VERSION .

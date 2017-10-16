@@ -1,0 +1,13 @@
+language: bash
+services: docker
+sudo: required
+
+env:
+  - VERSION=0.1
+
+script:
+  - ./tools/docker.sh
+  # - ./tools/run.sh all
+
+after_script:
+  - docker images

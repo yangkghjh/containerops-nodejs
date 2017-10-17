@@ -1,0 +1,38 @@
+uri: containerops/component/nodejs-component-bower-test
+title: Component for nodejs projects
+version: 1
+tag: latest
+timeout: 0
+receivers:
+  -
+    type: mail
+    address: yangkghjh@gmail.com
+stages:
+  -
+    type: start
+    name: start
+    title: Start
+  -
+    type: normal
+    name: dependence-nodejs-component
+    title:  dependence bower
+    sequencing: sequence
+    actions:
+      -
+        name: component-nodejs-dependence-bower-action1
+        title: action of component-nodejs-dependence-bower wiht ymal output and true co-result
+        jobs:
+          -
+            type: component
+            endpoint: hub.opshub.sh/containerops/dependence-nodejs-bower:latest
+            resources:
+              cpu: 4
+              memory: 8G
+            timeout: 0
+            environments:
+              - CO_DATA: "git_url=https://github.com/WildDogTeam/demo-js-wildchat.git"
+      -
+  -
+    type: end
+    name: end
+    title: End

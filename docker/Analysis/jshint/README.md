@@ -3,13 +3,13 @@
 ## Build
 
 ```shell
-docker build -t hub.opshub.sh/containerops/dependence-nodejs-jshint:latest .
+docker build -t hub.opshub.sh/containerops/analysis-nodejs-jshint:latest .
 ```
 
 ## Run
 
 ```shell
-docker run --env CO_DATA="git_url=https://github.com/jshint/jshint.git path=src" hub.opshub.sh/containerops/dependence-nodejs-jshint:latest
+docker run --env CO_DATA="git_url=https://github.com/jshint/jshint.git path=src" hub.opshub.sh/containerops/analysis-nodejs-jshint:latest
 ```
 
 ## Options

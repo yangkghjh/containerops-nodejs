@@ -20,18 +20,32 @@ stages:
     actions:
       -
         name: component-nodejs-analysis-jscs-action1
-        title: action of component-nodejs-analysis-jscs wiht ymal output and true co-result
+        title: action of component-nodejs-analysis-jscs with yaml output and true co-result
         jobs:
           -
             type: component
+            # kubectl: component-nodejs-analysis-eslint.yaml
             endpoint: hub.opshub.sh/containerops/analysis-nodejs-jscs:latest
             resources:
-              cpu: 4
-              memory: 8G
+              cpu: 2
+              memory: 4G
             timeout: 0
             environments:
               - CO_DATA: "git_url=https://github.com/spyl94/react-brunch-demo.git path=brunch-config.js preset=airbnb"
       -
+        name: component-nodejs-analysis-jscs-action2
+        title: action of component-nodejs-analysis-jscs with yaml output and false co-result
+        jobs:
+          -
+            type: component
+            # kubectl: component-nodejs-analysis-eslint.yaml
+            endpoint: hub.opshub.sh/containerops/analysis-nodejs-jscs:latest
+            resources:
+              cpu: 2
+              memory: 4G
+            timeout: 0
+            environments:
+              - CO_DATA: "git_url=https://github.com/yangkghjh/containerops-nodejs.git path=brunch-config.js preset=airbnb"
   -
     type: end
     name: end

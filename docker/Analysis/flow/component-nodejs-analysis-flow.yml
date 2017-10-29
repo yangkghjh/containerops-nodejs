@@ -20,18 +20,32 @@ stages:
     actions:
       -
         name: component-nodejs-analysis-flow-action1
-        title: action of component-nodejs-analysis-flow wiht ymal output and true co-result
+        title: action of component-nodejs-analysis-flow wiht yaml output and true co-result
         jobs:
           -
             type: component
+            # kubectl: component-nodejs-analysis-eslint.yaml
             endpoint: hub.opshub.sh/containerops/analysis-nodejs-flow:latest
             resources:
-              cpu: 4
-              memory: 8G
+              cpu: 2
+              memory: 4G
             timeout: 0
             environments:
               - CO_DATA: "git_url=https://github.com/facebook/flow.git"
       -
+        name: component-nodejs-analysis-flow-action2
+        title: action of component-nodejs-analysis-flow wiht yaml output and false co-result
+        jobs:
+          -
+            type: component
+            # kubectl: component-nodejs-analysis-eslint.yaml
+            endpoint: hub.opshub.sh/containerops/analysis-nodejs-flow:latest
+            resources:
+              cpu: 2
+              memory: 4G
+            timeout: 0
+            environments:
+              - CO_DATA: "git_url=https://github.com/yangkghjh/containerops-nodejs.git"
   -
     type: end
     name: end

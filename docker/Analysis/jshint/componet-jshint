@@ -50,6 +50,7 @@ async function Cmd (cmd, cwd, f) {
     e.stderr.on('data', data => Stderr(data));
 
     return e.on('exit', (code) => {
+        console.log('result:' + code);
         if (code == 0 || code == null) {
             if (f != null) {
                 f();
@@ -65,6 +66,10 @@ function getCmd(params, paramsList, baseCmd) {
 
     if (!isNull(params['path'])) {
         cmd = cmd + " " + params['path'];
+    } else {
+        Stderr("No specified path\n");
+        Stderr("[COUT] CO_RESULT = false\n");
+        process.exit(1);
     }
 
     console.log(cmd);

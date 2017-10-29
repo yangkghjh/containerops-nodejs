@@ -36,7 +36,7 @@ function Env () {
     return result;
 }
 
-async function Cmd (cmd, cwd, f) {
+async function Cmd (cmd, cwd, f, out = true) {
     if (!(cmd !== null && cmd !== undefined && cmd !== '')) {
         Stderr("Cmd could not be null.");
     }
@@ -46,7 +46,9 @@ async function Cmd (cmd, cwd, f) {
         cwd: cwd
     });
 
-    e.stdout.on('data', data => Stdout(data));
+    if (out) {
+        e.stdout.on('data', data => Stdout(data));
+    }
     e.stderr.on('data', data => Stderr(data));
 
     return e.on('exit', (code) => {
@@ -88,6 +90,6 @@ Git(co_data.git_url, () => {
     Cmd("npm install", workdir, () => {
         Cmd(cmd, workdir, () => {
             Stderr("[COUT] CO_RESULT = true\n");
-        });
+        }, false);
     });
 });

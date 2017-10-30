@@ -6,6 +6,8 @@ const workdir = "./workdir";
 function Git (git_url, f) {
     if (!(git_url !== null && git_url !== undefined && git_url !== '')) {
         Stderr("Git url could not be null.\n");
+        Stderr("[COUT] CO_RESULT = false\n");
+        process.exit(1);
     }
 
     return Cmd('git clone ' + git_url + " " + workdir, null, f);
@@ -38,7 +40,9 @@ function Env () {
 
 async function Cmd (cmd, cwd, f) {
     if (!(cmd !== null && cmd !== undefined && cmd !== '')) {
-        Stderr("Cmd could not be null.\n");process.exit(1);
+        Stderr("Cmd could not be null.\n");
+        Stderr("[COUT] CO_RESULT = false\n");
+        process.exit(1);
     }
 
     var exec = require('child_process').exec;
@@ -56,12 +60,18 @@ async function Cmd (cmd, cwd, f) {
             }
         } else {
             Stderr("[COUT] CO_RESULT = false\n");
+            process.exit(1);
         }
     });
 }
 
 function getCmd(params, paramsList, baseCmd) {
     var cmd = baseCmd;
+    paramsList.forEach((p) => {
+        if (!isNull(params[p])) {
+            cmd = cmd + " --" + p + " " + params[p];
+        }
+    })
 
     console.log(cmd);
     return cmd;
@@ -72,17 +82,17 @@ function isNull(data) {
 }
 
 if (!(component !== null || component !== undefined || component !== '')) {
-    Stderr("component could not be null\n");Stderr("[COUT] CO_RESULT = false\n");process.exit(1);
+    Stderr("component could not be null\n");
+    Stderr("[COUT] CO_RESULT = false\n");
+    process.exit(1);
 }
 
 var paramsList = [
-    "require",
-    "reporter",
-    "check-leaks"
+    "config"
 ];
 
 var co_data = Env();
-var cmd = getCmd(co_data, paramsList, "flow");
+var cmd = getCmd(co_data, paramsList, "webpack");
 
 Git(co_data.git_url, () => {
     Cmd("npm install", workdir, () => {

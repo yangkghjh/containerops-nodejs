@@ -31,11 +31,11 @@ list=( \
 )
 
 paths=( \
-    "cd docker/Analysis/eslint" \
+    "cd docker/analysis/eslint" \
     "cd ../flow" \
     "cd ../jscs" \
     "cd ../jshint" \
-    "cd ../../Build/babel" \
+    "cd ../../build/babel" \
     "cd ../browserify" \
     "cd ../brunch" \
     "cd ../coffee" \
@@ -44,10 +44,10 @@ paths=( \
     "cd ../less" \
     "cd ../uglify" \
     "cd ../webpack" \
-    "cd ../../Dependence/bower" \
+    "cd ../../dependence/bower" \
     "cd ../npm" \
     "cd ../yarn" \
-    "cd ../../Document/docco" \
+    "cd ../../document/docco" \
     "cd ../jsdoc" \
 )
 
